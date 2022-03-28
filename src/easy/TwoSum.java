@@ -1,7 +1,9 @@
 package easy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Given an array of integers <strong>numbers</strong> and an integer <strong>target</strong>,
@@ -44,6 +46,41 @@ public class TwoSum {
             }
         }
         return resultList;
+    }
+
+    /**
+     * Time complexity o(n^2), space complexity o(n)
+     *
+     * @param numbers
+     * @param target
+     * @return
+     */
+    public int[] twoPassHashTable(int[] numbers, int target) {
+        // Build a hash map of number to index list
+        Map<Integer, List<Integer>> numberToIndexMap = new HashMap<>();
+        for (int index = 0; index < numbers.length; index++) {
+            if (!numberToIndexMap.containsKey(numbers[index])) {
+                numberToIndexMap.put(numbers[index], new ArrayList<>());
+            }
+            numberToIndexMap.get(numbers[index]).add(index);
+        }
+        for (int index = 0; index < numbers.length; index++) {
+            int complement = target - numbers[index];
+            // If the hash map contains the complement as a key
+            if (numberToIndexMap.containsKey(complement)) {
+                // If the complement does not equal to the actual number
+                if (!numberToIndexMap.get(complement).contains(index)) {
+                    return new int[] {index, numberToIndexMap.get(complement).get(0)};
+                }
+                // Iterate the index list of the complement and choose a pair of indices
+                for (Integer complementIndex : numberToIndexMap.get(complement)) {
+                    if (!complementIndex.equals(index)) {
+                        return new int[] {index, complementIndex};
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     public int getSequenceNo() {

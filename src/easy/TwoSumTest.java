@@ -20,6 +20,12 @@ public class TwoSumTest {
     }
 
     @Test
+    public void testTwoPassHashTable() {
+        assertArrayEquals(new int[]{0, 3}, twoSum.twoPassHashTable(numbers1, target1));
+        assertArrayEquals(new int[]{1, 6}, twoSum.twoPassHashTable(numbers2, target2));
+    }
+
+    @Test
     public void testExtendedBruteForce() {
         assertArrayEquals(new int[]{0, 3}, twoSum.extendedBruteForce(numbers1, target1).get(0));
         assertArrayEquals(new int[]{1, 7}, twoSum.extendedBruteForce(numbers1, target1).get(1));
