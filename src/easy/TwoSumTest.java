@@ -38,6 +38,18 @@ public class TwoSumTest {
     }
 
     @Test
+    public void testExtendedTwoPassHashTable() {
+        assertArrayEquals(new int[]{0, 3}, twoSum.extendedTwoPassHashTable(numbers1, target1).get(0));
+        assertArrayEquals(new int[]{1, 7}, twoSum.extendedTwoPassHashTable(numbers1, target1).get(1));
+        assertArrayEquals(new int[]{2, 6}, twoSum.extendedTwoPassHashTable(numbers1, target1).get(2));
+        assertArrayEquals(new int[]{4, 5}, twoSum.extendedTwoPassHashTable(numbers1, target1).get(3));
+        assertArrayEquals(new int[]{1, 6}, twoSum.extendedTwoPassHashTable(numbers2, target2).get(0));
+        assertArrayEquals(new int[]{2, 7}, twoSum.extendedTwoPassHashTable(numbers2, target2).get(1));
+        assertArrayEquals(new int[]{3, 8}, twoSum.extendedTwoPassHashTable(numbers2, target2).get(2));
+        assertArrayEquals(new int[]{4, 5}, twoSum.extendedTwoPassHashTable(numbers2, target2).get(3));
+    }
+
+    @Test
     public void testGetSequenceNo() {
         assertEquals(1, twoSum.getSequenceNo());
     }

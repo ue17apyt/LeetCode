@@ -83,6 +83,31 @@ public class TwoSum {
         return null;
     }
 
+    public List<int[]> extendedTwoPassHashTable(int[] numbers, int target) {
+        List<int[]> resultList = new ArrayList<>();
+        Map<Integer, List<Integer>> numberToIndexMap = new HashMap<>();
+        for (int index = 0; index < numbers.length; index++) {
+            if (!numberToIndexMap.containsKey(numbers[index])) {
+                numberToIndexMap.put(numbers[index], new ArrayList<>());
+            }
+            numberToIndexMap.get(numbers[index]).add(index);
+        }
+        for (int index = 0; index < numbers.length; index++) {
+            int complement = target - numbers[index];
+            if (numberToIndexMap.containsKey(complement)) {
+                List<Integer> complementIndices = numberToIndexMap.get(complement);
+                for (int complementIndexIndex = 0; complementIndexIndex < complementIndices.size(); complementIndexIndex++) {
+                    int complementIndex = complementIndices.get(complementIndexIndex);
+                    int[] actualPair = new int[] {index, complementIndex};
+                    if (index != complementIndex && !resultList.contains(actualPair) && index < complementIndex) {
+                        resultList.add(actualPair);
+                    }
+                }
+            }
+        }
+        return resultList;
+    }
+
     public int getSequenceNo() {
         return sequenceNo;
     }
