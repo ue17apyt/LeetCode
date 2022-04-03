@@ -68,6 +68,24 @@ public class ListNode {
 
     }
 
+    public ListNode addTwoNumbersRecursively(ListNode augendNode, ListNode addendNode) {
+        return traverse(augendNode, addendNode, 0);
+    }
+
+    private ListNode traverse(ListNode augendNode, ListNode addendNode, int carry) {
+        if (Objects.isNull(augendNode) && Objects.isNull(addendNode) && carry == 0) {
+            return null;
+        }
+        int sum = carry + (Objects.nonNull(augendNode) ? augendNode.value : 0) +
+                (Objects.nonNull(addendNode) ? addendNode.value : 0);
+        carry = sum / 10;
+        ListNode sumNode = new ListNode(sum % 10);
+        sumNode.next = traverse(Objects.nonNull(augendNode) ? augendNode.next : null,
+                Objects.nonNull(addendNode) ? addendNode.next : null, carry);
+        return sumNode;
+    }
+
+
     public int getSequenceNo() {
         return sequenceNo;
     }

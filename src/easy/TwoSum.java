@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class TwoSum {
 
-    private int sequenceNo = 1;
+    private final int sequenceNo = 1;
 
     /**
      * Time complexity o(n^2), space complexity o(1)
@@ -70,12 +70,12 @@ public class TwoSum {
             if (numberToIndexMap.containsKey(complement)) {
                 // If the complement does not equal to the actual number
                 if (!numberToIndexMap.get(complement).contains(index)) {
-                    return new int[] {index, numberToIndexMap.get(complement).get(0)};
+                    return new int[]{index, numberToIndexMap.get(complement).get(0)};
                 }
                 // Iterate the index list of the complement and choose a pair of indices
                 for (Integer complementIndex : numberToIndexMap.get(complement)) {
                     if (!complementIndex.equals(index)) {
-                        return new int[] {index, complementIndex};
+                        return new int[]{index, complementIndex};
                     }
                 }
             }
@@ -98,7 +98,7 @@ public class TwoSum {
                 List<Integer> complementIndices = numberToIndexMap.get(complement);
                 for (int complementIndexIndex = 0; complementIndexIndex < complementIndices.size(); complementIndexIndex++) {
                     int complementIndex = complementIndices.get(complementIndexIndex);
-                    int[] actualPair = new int[] {index, complementIndex};
+                    int[] actualPair = new int[]{index, complementIndex};
                     if (index != complementIndex && !resultList.contains(actualPair) && index < complementIndex) {
                         resultList.add(actualPair);
                     }
